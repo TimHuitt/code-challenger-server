@@ -34,16 +34,6 @@ app.get("/", (req, res) => {
   res.send("incorrect path");
 });
 
-// Serve static files from the React app build directory
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-// Add a universal route handler for any other GET request not handled above,
-// to serve the React app
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
-
-
 // app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 
 let port = process.env.PORT;
