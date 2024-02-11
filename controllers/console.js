@@ -20,6 +20,7 @@ async function consoleText(req, res) {
             - Your response will be used for programmatic insertion into a 'console' app. Please ensure that your formatting fits this goal perfectly.
             - Never assume an output or change data based on naming, always ensure accuracy with actual code output
             - The code string provided by the user is formatted to represent line breaks and indentation and you should interpret this to represent the actual code
+            - Never require the user to execute their functions or classes. Output is not required for a 'true' eval.
             - You will follow these steps:
               Step 1: You will receive from the user: language, challenge, code
               Step 2: Evaluate and Run the code based on the provided language
