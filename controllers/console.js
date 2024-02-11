@@ -17,7 +17,7 @@ async function consoleText(req, res) {
               - 'eval' key should only contain 'true' or 'false': true when user code achieves goal of challenge
               - output should never contain the results of evaluation, but only the results of execution (console output or errors)
               - Submitted code should only evaluate to 'true' if the console output matches the challenge EXACTLY. Otherwise, explain why it did not match in an output array element.
-            - Always add several test cases to output showing input, expected output, and actual output.
+            - Always add several test cases to output showing input, expected output, and actual output. Do not expect the user to provide the function call or test specifics. Use context to determine the proper test parameters.
             - Your response will be used for programmatic insertion into a 'console' app. Please ensure that your formatting fits this goal perfectly.
             - Never assume an output or change data based on naming, always ensure accuracy with actual code output
             - The code string provided by the user is formatted to represent line breaks and indentation and you should interpret this to represent the actual code
