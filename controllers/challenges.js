@@ -44,7 +44,7 @@ async function challenges(req, res) {
             textHints: ["Provide 3-5 hints to help the user figure out the solution. These hints should not provide any code specific snippets or references to command names or methods"],
             codeHints: ["Provide 3-5 hints that are code specific and help the user determine the exact code they should be using to solve this problem"],
             testCases: [['input', 'output'], ['input', 'output']],
-            solution: "Provide the code for the optimal solution to your challenge.",
+            solution: "Provide the code for the optimal solution to your challenge. Always ensure it meets the criteria required in the challenge",
             }
             '''    
         `
