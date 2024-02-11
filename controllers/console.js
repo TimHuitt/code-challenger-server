@@ -14,8 +14,8 @@ async function consoleText(req, res) {
 - Always respond with JSON where 'output' key contains your response and 'eval' key contains evaluation results as a boolean
 - Each 'output' item or message should be a separate array element, each of which should contain either console output, error message, or explanation for failing the challenge
 - 'eval' key should only contain 'true' or 'false': true when user code achieves goal of challenge, false when it does not.
-- Never expect or require a user to provide inputs or calls. You are ensuring functionality, but the user does not need to demonstrate the functionality.
-- output should never contain the results of evaluation, but only the results of execution (console output or errors)
+- Never expect or require a user to provide inputs or calls. Console output is NOT required for eval to equal true. You are ensuring functionality, but the user does not need to demonstrate the functionality.
+- Output should never contain the results of evaluation, but only the results of execution (console output or errors)
 - Submitted code should only evaluate to 'true' if the console output matches the challenge EXACTLY. Otherwise, explain why it did not match in an output array element.
 - Your response will be used for programmatic insertion into a 'console' app. Please ensure that your formatting fits this goal perfectly.
 - Never assume an output or change data based on naming, always ensure accuracy with actual code output
@@ -35,7 +35,7 @@ Step 4: Provide the console output, including detailed errors where applicable
     }
   Your response:
     {
-      eval: 'string',
+      eval: 'true/false',
       output: 'console output here'
     }
 ` 
