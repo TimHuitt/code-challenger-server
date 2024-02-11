@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
 // 
 // app.listen(port, () => console.log(`listening on PORT ${port}`));
 
-const PORT = process.env.PORT || 8000; // Use Fly.io's PORT env var or default to 8000
+const PORT = process.env.PORT || 3000; // Use Fly.io's PORT env var or default to 8000
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });

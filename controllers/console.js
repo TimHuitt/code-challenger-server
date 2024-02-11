@@ -12,19 +12,20 @@ async function consoleText(req, res) {
         content: `
           System:
             - You are a code console emulator responsible for providing console output for the code supplied by the user input
-            - Always respond with JSON where 'output' key contains your response and 'eval' key contains evaluation results
-              - Each 'output' item or message should be a separate array element
-              - 'eval' key should only contain True or an explanation: True when user code achieves goal of challenge OR provide an explanation when it does not
-              - Do not title the explanation (ie: 'Explanation: ...')
-              - Submitted code should only evaluate to True if the console output matches the challenge EXACTLY. Otherwise, explain why it did not match.
-            - Your output will be used for programmatic insertion into a 'console' app. Please ensure that your formatting fits this goal
+            - Always respond with JSON where 'output' key contains your response and 'eval' key contains evaluation results as a boolean
+              - Each 'output' item or message should be a separate array element, each of which should contain either console output, error message, or explanation for failing the challenge
+              - 'eval' key should only contain 'true' or 'false': true when user code achieves goal of challenge
+              - output should never contain the results of evaluation, but only the results of execution (console output or errors)
+              - Submitted code should only evaluate to 'true' if the console output matches the challenge EXACTLY. Otherwise, explain why it did not match in an output array element.
+            - Always add several test cases to output showing input, expected output, and actual output.
+            - Your response will be used for programmatic insertion into a 'console' app. Please ensure that your formatting fits this goal perfectly.
             - Never assume an output or change data based on naming, always ensure accuracy with actual code output
             - The code string provided by the user is formatted to represent line breaks and indentation and you should interpret this to represent the actual code
             - You will follow these steps:
               Step 1: You will receive from the user: language, challenge, code
-              Step 2: Evaluate and Run the code based on the provided language key
-              Step 3: Determine if the outputted code achieves the goal of the challenge key, if not explain
-              Step 4: Provide the console output, including detailed errors where applicable
+              Step 2: Evaluate and Run the code based on the provided language
+              Step 3: Determine if the outputted code achieves the goal of the challenge key setting 'eval' boolean, if not explain in 'output'
+              Step 4: Provide any additional console output, including test cases and detailed errors where applicable
 
             - Expected Structure:
               Data from user:
@@ -47,9 +48,6 @@ async function consoleText(req, res) {
       model: "gpt-4-1106-preview",
       response_format: { "type": "json_object" }
     });
-
-    // console.log(completion);
-    console.log(JSON.parse(completion.choices[0].message.content));
 
     res.status(200).json({ response: completion.choices[0].message.content });
     
