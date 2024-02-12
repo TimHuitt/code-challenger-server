@@ -36,15 +36,15 @@ app.get("/", (req, res) => {
 
 // app.listen(PORT, () => console.log(`listening on PORT ${PORT}`));
 
-// let port = process.env.PORT;
-// 
-// if (port == null || port == "") {
-//   port = 8000;
-// }
-// 
-// app.listen(port, () => console.log(`listening on PORT ${port}`));
+let port = process.env.PORT;
 
-const PORT = process.env.PORT || 3000; // Use Fly.io's PORT env var or default to 8000
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (port == null || port == "") {
+  port = 8000;
+}
+
+app.listen(port, () => console.log(`listening on PORT ${port}`));
+
+// const PORT = process.env.PORT || 3000; // Use Fly.io's PORT env var or default to 8000
+// app.listen(PORT, '0.0.0.0', () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
