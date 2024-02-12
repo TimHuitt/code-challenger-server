@@ -14,7 +14,7 @@ async function challenges(req, res) {
 - Provide several test cases to ensure thorough testing, emphasizing the importance of correctness in expected outputs.
 - Instructions should clearly define the task, including naming conventions for functions or classes to be implemented by the user.
 - Hints should assist the user in conceptualizing the solution without providing direct code snippets or specific command/method names.
-- The optimal solution code provided must meet the challenge criteria and be presented as a model answer.
+- The optimal solution code provided must meet the challenge criteria and be presented as a model answer. You MUST be 100% certain that your solution meets ALL criteria of the challenge.
 
 Response Template:
   {
@@ -25,7 +25,7 @@ Response Template:
     textHints: ["general hints to guide the user", "additional hints"],
     codeHints: ["code-specific hints to nudge towards the solution"],
     testCases: [["input", "expected output"], ["input", "expected output"]],
-    solution: "optimal solution code"
+    solution: "optimal solution code, must meet all challenge requirements"
   }
            
         `
