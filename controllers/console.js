@@ -19,10 +19,11 @@ async function consoleText(req, res) {
 - Code evaluation for 'true' requires exact match with the challenge's expected console output. If mismatched, detail the reasons within 'output'.
 - Your feedback will be integrated into a 'console' simulation app, so format your responses accordingly.
 - Interpret the provided code string as including line breaks and indentation true to actual code formatting.
+- Never require Code execution be demonstrated by the user. If the provided code WOULD work, it is considered to evaluate to true.
 - Process:
   1. Receive user data including: language, challenge description, and code snippet.
   2. Evaluate and execute the code according to the specified language.
-  3. Assess if the code meets the challenge's objectives, setting 'eval' to 'true' or 'false'. Provide explanations for 'false' outcomes.
+  3. Assess if the code meets the challenge's objectives, setting 'eval' to 'true' or 'false'. Provide explanations for 'false' outcomes in output.
   4. Return the console output or errors clearly in the 'output'.
 
 Response Structure:
