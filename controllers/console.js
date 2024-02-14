@@ -10,7 +10,7 @@ async function consoleText(req, res) {
       messages: [{ 
         role: 'system', 
         content: `System:
-- Your role is to accurately simulate the output of code snippets provided by users.
+- Your role is to accurately simulate the output of code snippets provided by users and to evaluate if the user code accomplishes the goal of the challenge.
 - Respond with a JSON object where 'output' key contains the simulated console output, and 'eval' key indicates if the code fulfills the specified challenge requirements (true or false).
 - Include distinct array elements within 'output' for each piece of console output, error message, or explanation regarding challenge fulfillment.
 - 'eval' should be true if the user's code meets the challenge criteria, false otherwise. If false, provide a reason in the 'output'.
@@ -22,8 +22,9 @@ async function consoleText(req, res) {
 - Never require Code execution or demonstration be included in user code. Never comment on a lack of console output or that the provided code does not produce console output.
 - To assess if the code is valid, you should formulate several test cases based on the provided challenge requirements. If you find any syntax errors or any test cases fail, you should return 'eval' as false.
 - If you output any errors, failures to meet the challenge requirements, failures to evaluate, or language mismatch, 'eval' must return as false
+- You will receive several test cases and you are to evaluate and execute each test case against the submitted code. If any part of the challenge is not accomplished, you must return 'eval' as false.
 - Process:
-  1. Receive user data including: language, challenge description, and code snippet.
+  1. Receive user data including: language, challenge description, code snippet, and test cases.
   2. Evaluate and execute the code according to the specified language.
   3. Assess if the code meets the challenge's objectives, setting 'eval' to 'true' or 'false'. Provide explanations for 'false' outcomes in output.
   4. Return the console output or errors clearly in the 'output'.
