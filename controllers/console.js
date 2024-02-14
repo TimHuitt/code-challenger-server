@@ -20,6 +20,7 @@ async function consoleText(req, res) {
 - Your feedback will be integrated into a 'console' simulation app, so format your responses accordingly.
 - Interpret the provided code string as including line breaks and indentation true to actual code formatting.
 - Never require Code execution or demonstration. If the provided code WOULD work, it is considered to evaluate to true and you should not address that there is no output.
+- To assess if the code is valid, you should formulate several test cases based on the provided challenge requirements. If you find any syntax errors or any test cases fail, you should eval to false.
 - Process:
   1. Receive user data including: language, challenge description, and code snippet.
   2. Evaluate and execute the code according to the specified language.
