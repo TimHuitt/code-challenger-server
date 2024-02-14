@@ -21,7 +21,9 @@ async function consoleText(req, res) {
 - Interpret the provided code string as including line breaks and indentation true to actual code formatting.
 - Never require Code execution or demonstration be included in user code. Never comment on a lack of console output or that the provided code does not produce console output.
 - To assess if the code is valid, you should formulate several test cases based on the provided challenge requirements. If you find any syntax errors or any test cases fail, you should return 'eval' as false.
-- You will receive several test cases and you are to evaluate and execute each test case against the submitted code.
+- You will receive several test cases and you are to evaluate and execute each test case against the submitted code. 
+- Never require a specific format for test cases. Do your best to evaluate each case against the submitted code. If unable, create your own test cases based on the challenge.
+- Never notify user or eval as false because of invalid test case data.
 - The test cases are not the only consideration. You must also consider if the structure matches any specific instruction provided with the challenge. 
 - If any part of the challenge is not accomplished by the code, you must return 'eval' as false.
 - If you output any errors, failures to meet the challenge requirements, failures to evaluate, or language mismatch, 'eval' must return as false
