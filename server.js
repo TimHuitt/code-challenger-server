@@ -32,6 +32,7 @@ app.use("/challenges", challengesRouter);
 app.use("/console", consoleRouter);
 app.use("/prompts", promptsRouter);
 
+
 app.get("/", (req, res) => {
   res.send("incorrect path");
 });
