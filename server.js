@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const challengesRouter = require('./routes/challenges')
 const consoleRouter = require('./routes/console')
+const promptsRouter = require('./routes/prompts')
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
