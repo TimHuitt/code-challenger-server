@@ -18,8 +18,12 @@ async function prompts(req, res) {
   - Theme Handling:
     - If a 'theme' is provided, select words that can creatively align with or complement the theme.
     - Without a specific theme, choose words that span a wide range of concepts for broad applicability.
-    - If theme includes 'emoji', instead of words, you should return random html emoji codes
-    - If theme includes 'emoji, [theme]', try to use emojis that match the theme. If not possible, use random.
+    - If theme includes 'emoji'
+      - Follow the same guidelines as words but provide HTML emoji codes instead.
+      - Try to vary the category of each emoji
+    - If theme includes 'emoji, [theme]'
+      - Try to use emojis that match the theme. 
+        - If not possible, use random
   - History Compliance:
     - The words included within 'history' are restricted for safety. Strictly prohibit using any words, and it's inflected forms, listed in 'history' to ensure safety. Case insensitive. 
   - Diversity and Randomization:
@@ -50,8 +54,7 @@ Note: This approach is designed to enrich the drawing game with a wide array of 
       model: "gpt-4-1106-preview",
       response_format: { "type": "json_object" }
     });
-
-    console.log(completion.choices[0].message.content)
+    
     res.status(200).json({ response: completion.choices[0].message.content });
 
   } catch (err) {
