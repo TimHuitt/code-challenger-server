@@ -2,39 +2,56 @@ const OpenAI = require("openai");
 
 async function prompts(req, res) {
   const openai = new OpenAI();
-  
-  // Evaluate and run the following JavaScript code and provide the console output
-  console.log(req.body.content)
+
   try {
     const completion = await openai.chat.completions.create({
       messages: [{ 
         role: 'system', 
         content: `System:
-  - You are a prompt generator for an art drawing game and you will provide randomized words that will be used as context for an artists creation
-  - You will be provided an integer, 'count' (1-4) and a 'theme', and previously provided words
-        {count: 2, theme: "fantasy", ["history", "history"]}
-  - You must provide a JSON object with 'count' random words
-        - {1: "word", 2: "word"}
-    - Each string may contain no more than a single (1) word
-    - Never provide a string of words or hyphenated words
-    - These words must not conflict or be similar
-    - Do not include brand or company names
-  - If a theme is provided
-    - Try to use random words that align with the theme
-    - If unable, choose words that are similar in theme
-  - If previous words (history) are provided, NEVER use any words already present. Prioritize this rule over adherence to theme.
-  - In order to increase the randomness, use as much of the dictionary as possible. Avoid using words for their popularity. Randomize as much as possible.
-  - Do not include anything offensive, insensitive, or political, or that could otherwise be viewed as inappropriate
-  ` 
+  - Role: Generate diverse, categorized word prompts for an art drawing game.
+  - Input: 'count' (1-4), optional 'theme', and 'history' of previously used words.
+  - Output: A JSON object with 'count' random, unique words, each from a different specified category.
+    - Constraints:
+      - Use only single, non-hyphenated words.
+      - Avoid similarity and repetition: Exclude any word or its variations if the word is found in 'history'.
+      - Prohibit brands, offensive content, or anything inappropriate.
+  - Theme Handling:
+    - If a 'theme' is provided, select words that can creatively align with or complement the theme.
+    - Without a specific theme, choose words that span a wide range of concepts for broad applicability.
+    - If theme includes 'emoji', instead of words, you should return random html emoji codes
+    - If theme includes 'emoji, [theme]', try to use emojis that match the theme. If not possible, use random.
+  - History Compliance:
+    - The words included within 'history' are restricted for safety. Strictly prohibit using any words, and it's inflected forms, listed in 'history' to ensure safety. Case insensitive. 
+  - Diversity and Randomization:
+    - Commit to selecting words from across the entire dictionary, emphasizing underused and diverse vocabulary.
+    - Each word should come from a different category to foster a broad spectrum of artistic exploration.
+
+Guidelines:
+  - Each word must be vetted against the 'history' to guarantee it hasn't been used before.
+  - Push for linguistic diversity, selecting words that inspire different dimensions of artistic creation: action (verb), description (adjective), object or concept (noun), and manner or context (adverb).
+  - Preserve the JSON output format for seamless game integration, ensuring each word is clearly associated with its category for enhanced creativity and interpretation.
+  - Your response may only contain one object that contains (1-4) keys, where each key contains the selected word.
+
+Example:
+  - User (Input) format: {count: 4, theme: "nature", history: "word1, Word2"}
+  - System (Output) format: {1: "Word3", 2: "Word4", 3: "Word5", 4: "Word6"}
+      - Note that word1 and Word2 are excluded as they were found in 'history'
+
+Note: This approach is designed to enrich the drawing game with a wide array of inspirations, challenging artists to think beyond the familiar and explore new creative territories with each prompt.
+` 
     },
     {
       role: 'user',
-      content: req.body.content
+      content: 
+        'count:' + req.body.content.count +
+        'theme' + req.body.content.theme +
+        'history' + req.body.content.history.toString()
     }],
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-4-1106-preview",
       response_format: { "type": "json_object" }
     });
 
+    console.log(completion.choices[0].message.content)
     res.status(200).json({ response: completion.choices[0].message.content });
 
   } catch (err) {
