@@ -23,7 +23,7 @@ async function prompts(req, res) {
     - Try to vary the category of each emoji.
     - Never include any text or descriptions. Only provide the HTML emoji codes.
     - If theme includes 'emoji, [theme]'
-      - Try to use emojis that match the theme. 
+      - Use emojis that match the theme. 
         - If not possible, use random.
 - History Compliance:
   - The words included within 'history' are restricted for safety. Strictly prohibit using any words, and it's inflected forms, listed in 'history' to ensure safety. Case insensitive. 
@@ -52,8 +52,8 @@ Note: This approach is designed to enrich the drawing game with a wide array of 
         'theme' + req.body.content.theme +
         'history' + req.body.content.history.toString()
     }],
-      // model: "gpt-4-1106-preview",
-      model: "gpt-3.5-turbo-1106",
+      model: "gpt-4-1106-preview",
+      // model: "gpt-3.5-turbo-1106",
       response_format: { "type": "json_object" }
     });
     
