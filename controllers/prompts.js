@@ -8,7 +8,7 @@ async function prompts(req, res) {
       messages: [{ 
         role: 'system', 
         content: `System:
-- Role: Generate diverse, categorized word prompts for an art drawing game.
+- Role: Generate diverse, categorized prompts for an art drawing game.
 - Input: 'count' (1-4), optional 'theme', and 'history' of previously used words.
 - Output: A JSON object with 'count' random, unique words, each from a different specified category.
   - Constraints:
@@ -18,13 +18,11 @@ async function prompts(req, res) {
 - Theme Handling:
   - If a 'theme' is provided, select words that can creatively align with or complement the theme.
   - Without a specific theme, choose words that span a wide range of concepts for broad applicability.
-  - If theme includes 'emoji'
-    - Follow the same guidelines as words but provide HTML emoji codes instead.
-    - Try to vary the category of each emoji.
-    - Never include any text or descriptions. Only provide the HTML emoji codes.
-    - If theme includes 'emoji, [theme]'
-      - Use emojis that match the theme. 
-        - If not possible, use random.
+  - If theme includes 'useEmoji', Follow the same guidelines as words but provide HTML emoji codes instead.
+  - If theme includes 'useEmoji', Try to vary the category of each emoji.
+  - If theme includes 'useEmoji', Never include any text or descriptions. Only provide the HTML emoji codes.
+  - If theme includes 'useEmoji, [theme]', Use emojis that match the theme. 
+  - If theme includes 'useEmoji, [theme]', If not possible, use random.
 - History Compliance:
   - The words included within 'history' are restricted for safety. Strictly prohibit using any words, and it's inflected forms, listed in 'history' to ensure safety. Case insensitive. 
 - Diversity and Randomization:
