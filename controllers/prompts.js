@@ -2,7 +2,6 @@ const OpenAI = require("openai");
 
 async function prompts(req, res) {
   const openai = new OpenAI();
-  console.log(req.body.content)
   try {
     const completion = await openai.chat.completions.create({
       messages: [{ 
@@ -41,7 +40,6 @@ Note: This approach is designed to enrich the drawing game with a wide array of 
     });
     
     res.status(200).json({story: completion.choices[0].message.content})
-    
   } catch (err) {
     console.log(err)
     res.status(400).json({ err: err.message });
