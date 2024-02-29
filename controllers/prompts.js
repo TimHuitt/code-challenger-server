@@ -18,6 +18,7 @@ async function prompts(req, res) {
         - Short: 1 sentence
         - Medium: 2-4 sentences
         - Long: 1 paragraph
+    - It is imperative that you never exceed the length constraints based on the length provided
 - Theme Handling:
   - If a 'theme' is provided, provide a story that fits the theme.
 
@@ -40,7 +41,7 @@ Note: This approach is designed to enrich the drawing game with a wide array of 
     });
     
     res.status(200).json({story: completion.choices[0].message.content})
-    console.log(completion.choices[0].message.content)
+    
   } catch (err) {
     console.log(err)
     res.status(400).json({ err: err.message });
